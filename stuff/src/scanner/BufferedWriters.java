@@ -12,11 +12,8 @@ public class BufferedWriters {
 	public static void main(String[] args) {
 		
 		try (
-			
-			
 			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\inigo\\git\\stuff\\stuff\\res\\files\\ficheroPrueba.txt"));
-			BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\inigo\\git\\stuff\\stuff\\res\\files\\ficheroPrueba.txt")) 
-					
+			BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\inigo\\git\\stuff\\stuff\\res\\files\\ficheroPrueba.txt")) 		
 			){
 			
 			//escribimos en el fichero
@@ -32,13 +29,10 @@ public class BufferedWriters {
 			while((linea = br.readLine()) != null) {											//asignamos una nueva linea a la variable linea
 				System.out.println(linea);
 			}
-				
+			
 		}catch (IOException e) {																//ponemos ioexception porque implementamos lectura de ficheros
 			// TODO Auto-generated catch block
 			System.out.println("Error en la entrada y salida de datos: " + e);
-		}
-		
-		
-		
+		}	
 	}
 }	
