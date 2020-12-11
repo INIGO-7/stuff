@@ -6,4 +6,6 @@ public class Sqlite {
 		System.out.println("Hello World!");
 	}
 	
+	//preparedStatement
+	
 }
