@@ -1,4 +1,4 @@
-package exams.parcial20201210;
+package exams.parcial20201211;
 
 import java.awt.Color;
 import java.awt.datatransfer.DataFlavor;
@@ -22,10 +22,10 @@ public class ProcesoCSVMeet {
 	public static void main( String[] s ) {
 		preparaVentana();
 		// Carga de ficheros (quitar si no se quiere cargar los ficheros de inicio)
-		cargaCSVMeet( "src/examen/parc202012/meet2020-10-15.csv" );
-		cargaCSVMeet( "src/examen/parc202012/meet2020-10-22.csv" );
-		cargaCSVMeet( "src/examen/parc202012/meet2020-10-29.csv" );
-		cargaCSVMeet( "src/examen/parc202012/meet2020-11-05.csv" );
+		cargaCSVMeet( "src/exams/parc20201211/meet2020-10-15.csv" );
+		cargaCSVMeet( "src/exams/parc20201211/meet2020-10-22.csv" );
+		cargaCSVMeet( "src/exams/parc20201211/meet2020-10-29.csv" );
+		cargaCSVMeet( "src/exams/parc20201211/meet2020-11-05.csv" );
 	}
 	
 	// Parte de Drag&Drop
@@ -118,7 +118,7 @@ public class ProcesoCSVMeet {
 	private static final SimpleDateFormat sdf2 = new SimpleDateFormat( "yyyy-MM-dd" );
 
 	protected static void preparaVentana() {
-		ventana = new VentanaGeneral();
+		ventana = new VentanaGeneral(lTablas);
 		ventana.setSize( 800, 600 );
 		ventana.setEnCierre( new Runnable() { public void run() {  } } );
 		ventana.setTitle( "Lectura de datos de meet" );
@@ -168,11 +168,11 @@ public class ProcesoCSVMeet {
 			Date fecha = null;
 			try {
 				Pattern patFecha = Pattern.compile( ".*\\d\\d\\d\\d-\\d\\d-\\d\\d" );  // Fecha dddd-dd-dd  (aaaa-mm-dd)
-				Matcher m = patFecha.matcher( fic );
+				Matcher m = patFecha.matcher( fic );									//Matcher interpreta patrones, y hacemos patFecha.matcher(fic) porque analizamos con el patrón patFecha el fichero fic.
 				if (m.find()) {
 					int fin = m.end();
-					String fechaS = fic.substring( fin-10, fin );
-					fecha = sdf2.parse( fechaS );
+					String fechaS = fic.substring( fin-10, fin );						//devuelve parte del string del fichero => .substring( beginIndex, endIndex )
+					fecha = sdf2.parse( fechaS );										//parse recibe string y lo pasa a Date.
 				}
 			} catch (Exception e) {}
 			

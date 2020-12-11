@@ -1,8 +1,10 @@
-package exams.parcial20201211;
+package jUnitTest;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import exams.parcial20201211.Contador;
 
 public class ContadorTest {
 	

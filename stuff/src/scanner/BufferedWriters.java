@@ -33,6 +33,6 @@ public class BufferedWriters {
 		}catch (IOException e) {																//ponemos ioexception porque implementamos lectura de ficheros
 			// TODO Auto-generated catch block
 			System.out.println("Error en la entrada y salida de datos: " + e);
-		}	
+		}// no tenemos que generar un finally para cerrar recursos ni otras operaciones al usar try with resources. try with resources can be used with any object that implements the AutoCloseable interface
 	}
 }	

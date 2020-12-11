@@ -1,4 +1,4 @@
-package exams.parcial20201210;
+package exams.parcial20201211;
 
 /** Clase para gestionar contadores
  * @author andoni.eguiluz @ ingenieria.deusto.es
