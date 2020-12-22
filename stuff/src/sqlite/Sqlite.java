@@ -9,8 +9,16 @@ public class Sqlite {
 
 	public void Sqlite() {
 		
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:nombreArchivo.db");
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:sqliteDatabase.db");
 				Statement stmt = (Statement) conn.createStatement()
+				
 				
 			){
 			

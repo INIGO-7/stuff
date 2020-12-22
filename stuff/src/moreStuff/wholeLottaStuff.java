@@ -29,7 +29,18 @@ public class wholeLottaStuff {
 		//.javaFileListFlavor
 		
 		
+		String string1 = "1", string2 = "2", string3 = "3", string4 = "4";
+		String[] strings = {string1, string2, string3, string4};
 		
+		strings[0] = "11";
+		
+		System.out.println(string1 + ", " + strings[0]);
+		 
+		
+		String a = "loco";
+		String b = "cuerdo";
+		
+		System.out.println(a + b);
 	}
 	
 }
