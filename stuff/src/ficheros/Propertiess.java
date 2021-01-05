@@ -19,9 +19,12 @@ public class Propertiess {
 			
 			properties.load(is);
 			
+			
+			int tlf = Integer.parseInt(properties.getProperty("telefono")); //para conseguir el numero de telefono como int en vez de string
+			
 			System.out.println(properties.getProperty("nombre"));
 			System.out.println(properties.getProperty("apellido"));
-			System.out.println(properties.getProperty("telefono"));
+			System.out.println(tlf);
 			System.out.println(properties.getProperty("direccion"));
 			
 			properties.setProperty("nombre", "Alberto");
