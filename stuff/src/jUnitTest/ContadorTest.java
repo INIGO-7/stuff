@@ -1,12 +1,11 @@
 package jUnitTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import exams.parcial20201211.Contador;
-
 
 public class ContadorTest {
 	
@@ -16,7 +15,6 @@ public class ContadorTest {
 	public void setUp() {
 		cont = new Contador(0);
 	}
-			
 	
 	@Test
 	public void testGet() {
@@ -25,19 +23,16 @@ public class ContadorTest {
 
 	@Test
 	public void testInc() {
-		
-		assertEquals(0, cont.get());
 		cont.inc();
 		assertEquals(1, cont.get());
 	}
 	
 	@Test
 	public void testIncNumero() {
-		
 		cont.inc(4);
 		assertEquals(4, cont.get());
 	}
 
 
-	
+
 }
