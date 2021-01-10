@@ -32,7 +32,9 @@ public class Propertiess {
 			properties.setProperty("nombre", "Alberto");
 			properties.store(new FileWriter("C:\\Users\\inigo\\git\\stuff\\stuff\\res\\files\\datos.properties"), 
 							"Datos del usuario"); //este string de la dcha sirve para hacer un comentario en nuestro fichero, y pondrá la fecha en la que se ha hecho
+			properties.setProperty("keyNueva", "funciona");
 			
+			System.out.println(properties.getProperty("keyNueva"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

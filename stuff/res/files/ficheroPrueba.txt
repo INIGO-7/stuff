@@ -1,2 +1,2 @@
-Esto es una prueba de BufferedWriter
-Segunda linea usando buffered, se ve bien fresco y va fluido (prueba)
+no funciona
+a ver si esto funciona
