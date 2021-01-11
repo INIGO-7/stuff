@@ -1,4 +1,4 @@
-package collections.hashMap;
+package collections.Map;
 
 import java.util.*;
 
@@ -72,7 +72,7 @@ public class Hashmap {
 	
 	public void setNotasFinales() {
 		if(!hs.isEmpty()) {
-			for (Map.Entry<String,Integer> entry : hs.entrySet()) {
+			for (Map.Entry<String,Integer> entry : hs.entrySet()) {		//puede no especificarse la clase del entry eg: for(Map.Entry entry : hs.entrySet()) -> luego hay que hacer cast para los valores, pero funciona igualmente
 		
 				if(entry.getValue() < 5) System.out.println(entry.getKey() + " ha suspendido.");
 				else if(entry.getValue() < 7) System.out.println(entry.getKey() + " ha aprobado.");
@@ -81,6 +81,10 @@ public class Hashmap {
 			}
 		}else System.out.println("El listado de las notas de alumnos está vacío.");
 	} 
+	
+	public HashMap<String, Integer> getMap(){
+		return hs;
+	}
 	
 	public static void main(String[] args) {
 		Hashmap hmap = new Hashmap();
