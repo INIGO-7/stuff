@@ -89,6 +89,8 @@ public class FarmaciaBD {
 	
 	public void poblarTablas() {
 		try {
+			
+			//medicamentos
 			insertSql = conn.prepareStatement("INSERT INTO MEDICAMENTO VALUES (?, ?, ?, ?)");
 			
 			insertSql.setInt(1, idM);
@@ -104,6 +106,80 @@ public class FarmaciaBD {
 			insertSql.setString(2, "apiretal");
 			insertSql.setFloat(3, 7.99f);
 			insertSql.setString(4, "gilead");
+			
+			insertSql.executeUpdate();
+			
+			insertSql = conn.prepareStatement("INSERT INTO MEDICAMENTO VALUES (?, ?, ?, ?)");
+			
+			insertSql.setInt(1, 8);
+			insertSql.setString(2, "ibuprofeno");
+			insertSql.setFloat(3, 5.99f);
+			insertSql.setString(4, "ferrer");
+			
+			insertSql.executeUpdate();
+			
+			//pacientes
+			insertSql = conn.prepareStatement("INSERT INTO PACIENTE VALUES (?, ?, ?, ?, ?)");
+			
+			insertSql.setInt(1, nss);
+			insertSql.setString(2, nombreP);
+			insertSql.setString(3, fechaNCTO);
+			insertSql.setString(4, dir);
+			insertSql.setString(5, ciudad);
+			
+			insertSql.executeUpdate();
+			
+			insertSql = conn.prepareStatement("INSERT INTO PACIENTE VALUES (?, ?, ?, ?, ?)");
+			
+			insertSql.setInt(1, 12841022);
+			insertSql.setString(2, "Agustin");
+			insertSql.setString(3, "12-02-2002");
+			insertSql.setString(4, "Rualasal");
+			insertSql.setString(5, "Santander");
+			
+			insertSql.executeUpdate();
+			
+			insertSql = conn.prepareStatement("INSERT INTO PACIENTE VALUES (?, ?, ?, ?, ?)");
+			
+			insertSql.setInt(1, 19023874);
+			insertSql.setString(2, "Roberto");
+			insertSql.setString(3, "20-05-2001");
+			insertSql.setString(4, "plaza el sol");
+			insertSql.setString(5, "Madrid");
+			
+			insertSql.executeUpdate();
+			
+			//recetas
+			insertSql = conn.prepareStatement("INSERT INTO RECETA VALUES (?, ?, ?, ?, ?, ?)");
+			
+			insertSql.setInt(1, nss);
+			insertSql.setInt(2, idM);
+			insertSql.setString(3, fecha);
+			insertSql.setInt(4, cant);
+			insertSql.setString(5, medico);
+			insertSql.setInt(6, dosis);
+			
+			insertSql.executeUpdate();
+			
+			insertSql = conn.prepareStatement("INSERT INTO RECETA VALUES (?, ?, ?, ?, ?, ?)");
+			
+			insertSql.setInt(1, 19023874);
+			insertSql.setInt(2, 17);
+			insertSql.setString(3, "10-01-2021");
+			insertSql.setInt(4, 3);
+			insertSql.setString(5, "Federico cabello");
+			insertSql.setInt(6, 8);
+			
+			insertSql.executeUpdate();
+			
+			insertSql = conn.prepareStatement("INSERT INTO RECETA VALUES (?, ?, ?, ?, ?, ?)");
+			
+			insertSql.setInt(1, 12841022);
+			insertSql.setInt(2, 8);
+			insertSql.setString(3, "25-11-2020");
+			insertSql.setInt(4, 6);
+			insertSql.setString(5, medico);
+			insertSql.setInt(6, 3);
 			
 			insertSql.executeUpdate();
 			
@@ -129,12 +205,35 @@ public class FarmaciaBD {
 		}
 	}
 	
+	//consultas sencillas SQL:
+	
+	public void getNumeroRecetasEmitidasCarlosCabeza() {
+		try {
+			rs = stmt.executeQuery("SELECT COUNT(MEDICO) FROM RECETA WHERE MEDICO = 'Carlos Cabeza';");
+			if(rs == null) System.out.println("El medico Carlos Cabeza no ha emitido ninguna receta.");
+			else while(rs.next()) System.out.println(rs.getInt("COUNT(MEDICO)"));
+		} catch (SQLException e) {
+			System.out.println("La consulta de los medicamentos emitidos por el medico Carlos Cabeza no ha funcionado. Error: " + e);
+		}
+	}
+	
 	public void borrarMedicamentos() {
 		try {
 			stmt.executeUpdate("DELETE FROM MEDICAMENTO;");
 			System.out.println("Medicamentos borrados correctamente.");
 		} catch (SQLException e) {
 			System.out.println("No se han podido borrar los medicamentos. Error: " + e);
+		}
+	}
+	
+	public void borrarBD() {
+		try {
+			stmt.executeUpdate("DROP TABLE MEDICAMENTO;");
+			stmt.executeUpdate("DROP TABLE PACIENTE;");
+			stmt.executeUpdate("DROP TABLE RECETA;");
+			System.out.println("Tablas borradas correctamente.");
+		} catch (SQLException e) {
+			System.out.println("No se ha podido borrar la información de la base de datos. Error: " + e);
 		}
 	}
 	
@@ -150,11 +249,13 @@ public class FarmaciaBD {
 	public static void main(String[] args) {
 		FarmaciaBD fbd = new FarmaciaBD();
 		fbd.conectarConBD();
-		//fbd.crearBD();
-		//fbd.poblarTablas();
-		
-		fbd.ensenyarMedicamentos();
-		//fbd.borrarMedicamentos();
+//		fbd.crearBD();
+//		fbd.poblarTablas();
+//		
+//		fbd.ensenyarMedicamentos();
+		fbd.getNumeroRecetasEmitidasCarlosCabeza();
+//		fbd.borrarMedicamentos();
+//		fbd.borrarBD();
 	}
 	
 	
