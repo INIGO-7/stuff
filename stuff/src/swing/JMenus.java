@@ -10,13 +10,15 @@ public class JMenus {
 	
 	public static void main(String[] args) {
 	
+		//llamar al constructor de window vacío para que funcione.
+		
 		JMenuItem item1, item2;
 		
 		JMenu menuE;
 		JMenu menuF;
 		JMenuBar menuBar = new JMenuBar();
 		
-		Window window = new Window(400, 400, "JMenu");
+		Window window = new Window();
 		
 		menuBar = new JMenuBar();
 		

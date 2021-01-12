@@ -16,6 +16,14 @@ public class Window extends JFrame{
 	public String title;
 	private Canvas canvas;
 	
+	public Window() {
+		this.width = 720;
+		this.height = 480;
+		this.title = "defaultWindow";
+		
+		createWindowWithoutCanvas(720, 480, "defaultWindow");
+	}
+	
 	public Window(int width, int height, String title) {
 		
 		this.width = width;
@@ -23,6 +31,15 @@ public class Window extends JFrame{
 		this.title = title;
 		
 		createWindow(width, height, title);
+	}
+	
+	public void createWindowWithoutCanvas(int width, int height, String title) {
+		setTitle(title);
+		setSize(width, height);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 	
 	public void createWindow(int width, int height, String title) {
