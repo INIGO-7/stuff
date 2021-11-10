@@ -26,6 +26,13 @@ import javax.swing.JSpinner;
 
 public class VentanaInigo extends JFrame{
 
+	//as this is done without threads, and we want to modify the slider when the spinner value is changed,
+	//and viceversa, we have to check the previous values of both.
+			
+	private int previousRedVal = 0;
+	private int previousBlueVal = 0;
+	private int previousGreenVal = 0;
+	
 	public VentanaInigo() {
 		
 		JPanel izquierda = new JPanel(new GridLayout(2, 1));
@@ -33,8 +40,8 @@ public class VentanaInigo extends JFrame{
 		
 		Color color = new Color(0, 0, 0);
 		
-		DefaultListModel dm = new DefaultListModel();
-		JList listaColores = new JList(dm);
+		DefaultListModel<Color> dm = new DefaultListModel<Color>();
+		JList<Color> listaColores = new JList<Color>(dm);
 		
 		JScrollPane scrollColores = new JScrollPane(listaColores);
 		
@@ -59,9 +66,9 @@ public class VentanaInigo extends JFrame{
 		JSpinner spinVerde = new JSpinner();
 		JSpinner spinAzul = new JSpinner();
 		
-		JSlider slideRojo = new JSlider();
-		JSlider slideVerde = new JSlider();
-		JSlider slideAzul = new JSlider();
+		JSlider slideRojo = new JSlider(0,255);
+		JSlider slideVerde = new JSlider(0,255);
+		JSlider slideAzul = new JSlider(0,255);
 		
 		slideRojo.setValue((int) spinRojo.getValue());
 		slideVerde.setValue((int) spinVerde.getValue());
@@ -77,9 +84,9 @@ public class VentanaInigo extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				int index = listaColores.getSelectedIndex();
 				try {
-				dm.removeElementAt(index);
+					dm.removeElementAt(index);
 				}catch (Exception ex) {
-					System.out.println("array vacío");
+					System.out.println("array vacï¿½o");
 				}
 			}
 			
@@ -89,14 +96,34 @@ public class VentanaInigo extends JFrame{
 
 			
 			public void actionPerformed(ActionEvent arg0) {
-			
-				int r = (int) spinRojo.getValue();
-				int g = (int) spinVerde.getValue();
-				int b = (int) spinAzul.getValue();
 				
-				slideRojo.setValue(r);
-				slideVerde.setValue(g);
-				slideAzul.setValue(b);
+				int r, g, b;
+				
+				if((int)spinRojo.getValue() != previousRedVal) {
+					r = (int) spinRojo.getValue();
+					slideRojo.setValue(r);
+				}else {
+					r = slideRojo.getValue();
+					spinRojo.setValue(r);
+				}
+				
+				if((int)spinVerde.getValue() != previousGreenVal) {
+					g = (int) spinVerde.getValue();
+					slideVerde.setValue(g);
+				}else {
+					g = slideVerde.getValue();
+					spinVerde.setValue(g);
+				}
+				
+				if((int)spinAzul.getValue() != previousBlueVal) {
+					b = (int) spinAzul.getValue();
+					slideAzul.setValue(b);
+				}else {
+					b = slideAzul.getValue();
+					spinAzul.setValue(b);
+				}
+				
+				previousRedVal = r; previousGreenVal = g; previousBlueVal = b;
 				
 				ensenyarColor.setBackground(new Color(r, g, b));
 				
