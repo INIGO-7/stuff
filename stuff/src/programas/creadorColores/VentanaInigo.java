@@ -11,18 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
+import javax.swing.*;
 
 public class VentanaInigo extends JFrame{
 
@@ -61,10 +50,13 @@ public class VentanaInigo extends JFrame{
 		JLabel lRojo = new JLabel("rojo: ");
 		JLabel lVerde = new JLabel("verde: ");
 		JLabel lAzul = new JLabel("azul: ");
-		
-		JSpinner spinRojo = new JSpinner();
-		JSpinner spinVerde = new JSpinner();
-		JSpinner spinAzul = new JSpinner();
+
+		SpinnerModel sm1 = new SpinnerNumberModel(0, 0, 255, 1);
+		SpinnerModel sm2 = new SpinnerNumberModel(0, 0, 255, 1);
+		SpinnerModel sm3 = new SpinnerNumberModel(0, 0, 255, 1);
+		JSpinner spinRojo = new JSpinner(sm1);
+		JSpinner spinVerde = new JSpinner(sm2);
+		JSpinner spinAzul = new JSpinner(sm3);
 		
 		JSlider slideRojo = new JSlider(0,255);
 		JSlider slideVerde = new JSlider(0,255);
@@ -122,14 +114,15 @@ public class VentanaInigo extends JFrame{
 					b = slideAzul.getValue();
 					spinAzul.setValue(b);
 				}
-				
+
+
 				previousRedVal = r; previousGreenVal = g; previousBlueVal = b;
-				
 				ensenyarColor.setBackground(new Color(r, g, b));
-				
-				Color anyadoColor = new Color(r, g, b);
-				
-				dm.addElement(anyadoColor);
+
+				if(!dm.contains(new Color(r, g ,b))) {
+					Color anyadoColor = new Color(r, g, b);
+					dm.addElement(anyadoColor);
+				}
 				
 			}
 			
